@@ -90,4 +90,8 @@ export class FileTreeNode {
       yield *child.find(predicate)
     }
   }
+
+  public saved() {
+    this.dirty = false
+  }
 }

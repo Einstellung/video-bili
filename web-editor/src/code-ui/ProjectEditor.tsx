@@ -8,7 +8,7 @@ import classes from "./code.module.scss"
 export const EditorContext = createContext<ProjectEditorInst | null>(null)
 
 export const ProjectEditor = () => {
-  const editor = useProjectEditor("mock")
+  const [editor, ver] = useProjectEditor("codeless")
   return (
     <EditorContext.Provider value={editor}>
       <div className={classes['project-editor']}>

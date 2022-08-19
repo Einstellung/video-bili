@@ -28,23 +28,27 @@ export class DocService {
 
   public async put(values: any) {
     const idx = this.idx()
-    const one = await Doc.findOne({
-      where: {
-        idx
-      }
-    })
+    try {
+      const one = await Doc.findOne({
+        where: {
+          idx
+        }
+      })
 
-    if(one) {
-      await one.update({
-        doc: values
-      })
-    } else {
-      const doc = new Doc({
-        type: this.type,
-        idx,
-        doc: values
-      })
-      await doc.save()
+      if (one) {
+        await one.update({
+          doc: values
+        })
+      } else {
+        const doc = new Doc({
+          type: this.type,
+          idx,
+          doc: values
+        })
+        await doc.save()
+      }
+    } catch (e) {
+      console.log("err message ", e)
     }
   }
 

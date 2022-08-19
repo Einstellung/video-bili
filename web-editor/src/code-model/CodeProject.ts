@@ -36,4 +36,11 @@ export class CodeProject {
       version: this.version
     }
   }
+
+  public static fromJSON(json: PorjectJSON) {
+    const project = new CodeProject(json.name)
+    project.version = json.version
+    project.root = FileTreeNode.FromJSON(json.fileTree)
+    return project
+  }
 }
