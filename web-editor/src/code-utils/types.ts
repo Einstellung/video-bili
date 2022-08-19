@@ -1,3 +1,4 @@
 export enum Topic {
-  Loaded = "loaded"
+  Loaded = "loaded",
+  fileChanged = "fileChanged"
 }

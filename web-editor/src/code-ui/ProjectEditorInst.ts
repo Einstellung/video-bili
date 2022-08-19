@@ -2,6 +2,14 @@ import axios from "axios";
 import { CodeProject, FileTreeNode, PorjectJSON } from "../code-model";
 import { Emiter, Topic } from "../code-utils";
 
+function first<T>(it: Iterator<T>): T | null {
+  let next = it.next()
+  if(next.value) {
+    return next.value
+  }
+  return null
+}
+
 export class ProjectEditorInst extends Emiter {
   private project: CodeProject
 
@@ -14,6 +22,13 @@ export class ProjectEditorInst extends Emiter {
 
   public getProject() {
     return this.project
+  }
+
+  public getSelectedFileContent(fileName: string) {
+    const fileGenerator = this.project.getRoot().find(x => x.getType() === "file" && 
+      x.getFileName() === fileName)
+    const content = first(fileGenerator)?.getContent()
+    return content || ""
   }
 
   private async download() {

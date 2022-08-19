@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { EditorContext } from "./ProjectEditor"
 import { FileTreeNode } from "../code-model"
 import classes from "./code.module.scss"
+import { Topic } from "../code-utils"
 
 export const Explorer = () => {
 
@@ -17,9 +18,15 @@ export const Explorer = () => {
 const FileItem = ({file}: {
   file: FileTreeNode
 }) => {
+  const editor = useContext(EditorContext)!
+
   if(file.getType() === "file") {
     return (
-      <div className={classes['editor-file']}>
+      <div className={classes['editor-file']}
+        onClick={() => {
+          editor.emit(Topic.fileChanged, file.getFileName())
+        }}
+      >
         {file.getFileName()}
       </div>
     )
