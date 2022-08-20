@@ -1,5 +1,6 @@
 import { Express } from "express";
 import { DocService } from "./serviceDoc";
+import { uploadOSS } from "./serviceUpload";
 
 export function router(app: Express) {
   app.post("/code-project", async (req, res) => {
@@ -22,6 +23,14 @@ export function router(app: Express) {
     const result = await docSvc.get()
     res.send({
       result
+    })
+  })
+
+  app.post("/code-project-update", async (req, res) => {
+    const { fileName, fileContent } = req.body
+    const { url } = await uploadOSS(fileName, fileContent)
+    res.send({
+      url
     })
   })
 }
