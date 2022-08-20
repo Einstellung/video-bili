@@ -16,7 +16,7 @@ export function useProjectEditor(projectName: string) : [
       setVer(x => x+1)
     })
 
-    editor.on(Topic.fileChanged, (data: string) => {
+    editor.on(Topic.fileClicked, (data: string) => {
       const content = editor.getSelectedFileContent(data)
       const fileType = data.split(".").pop() || ""
 

@@ -24,7 +24,7 @@ const FileItem = ({file}: {
     return (
       <div className={classes['editor-file']}
         onClick={() => {
-          editor.emit(Topic.fileChanged, file.getFileName())
+          editor.emit(Topic.fileClicked, file.getFileName())
         }}
       >
         {file.getFileName()}
