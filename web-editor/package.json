@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.54.4",
-    "sequelize": "^6.21.3",
+    "sequelize": "6.6.5",
     "sqlite3": "5.0.10",
     "vite-node": "^0.22.1"
   },
