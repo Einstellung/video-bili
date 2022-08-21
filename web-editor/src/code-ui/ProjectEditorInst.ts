@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CodeProject, FileTreeNode, PorjectJSON } from "../code-model";
-import { Emiter, Topic } from "../code-utils";
+import { debounce, Emiter, Topic } from "../code-utils";
+import { updateContent } from "./CodeProjectRepo";
 
 function first<T>(it: Iterator<T>): T | null {
   let next = it.next()
@@ -29,6 +30,17 @@ export class ProjectEditorInst extends Emiter {
       x.getFileName() === fileName)
     const content = first(fileGenerator)?.getContent()
     return content || ""
+  }
+
+  public setSelectedFileContent(fileName: string, content: string) {
+    const fileGenerator = this.project.getRoot().find(x => x.getType() === "file" && 
+    x.getFileName() === fileName)
+    first(fileGenerator)?.setContent(content)
+  }
+
+  public async debounceSaveContent() {
+    const debonceSave = debounce(updateContent, 1000)
+    await debonceSave(this.project)
   }
 
   private async download() {
