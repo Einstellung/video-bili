@@ -19,7 +19,7 @@ export const CodeEditor = ({fileType, fileContent}: {
     <div className={classes['code-editor']}>
       <Editor 
       language={extToLang[fileType || "typescript"]}
-      value={extToLang[fileType] === "json" ? JSON.stringify(fileContent) : fileContent}
+      value={fileContent}
       theme="vs-dark"
       onChange={changeContent => {
         editor.emit(Topic.fileChanged, changeContent)

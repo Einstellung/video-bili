@@ -54,8 +54,8 @@ export class ProjectEditorInst extends Emiter {
 
     await Promise.all(files.map(file => {
       const url = file.getUrl()!
-      return axios.get(url)
-        .then(resp => resp.data)
+      return fetch(url)
+        .then(resp => resp.text())
         .then(content => {
           file.setContent(content)
           file.saved()

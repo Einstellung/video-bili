@@ -1,7 +1,7 @@
-import { CodeProjectUpload } from "./CodeProjectUpload";
+import { CodeProjectFS } from "./CodeProjectFS";
 
 async function run() {
-  await CodeProjectUpload.createTemplates()
+  await CodeProjectFS.createTemplates()
 }
 
 run()
