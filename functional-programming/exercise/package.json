@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "devDependencies": {},
+  "dependencies": {
+    "ramda": "^0.28.0"
+  }
+}
